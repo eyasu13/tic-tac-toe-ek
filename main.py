@@ -8,9 +8,12 @@ def displayBoard(boardList):
     print("| "+boardList[1]+" | "+boardList[2]+" | "+boardList[3]+" |")
     print("-------------")
 
-def playerMove(boardList,move,playerLetter):
-    boardList[move]=playerLetter;
-
+def playerMove(board,playerInput,playerLetter):
+    while True:
+        x=input("What is your move :")
+        if x in [1,2,3,4,5,6,7,8,9] and board[x]=="":
+            board[x]=playerLetter
+            break;
 def checkWinner(boardList):
     if((boardList[1]==boardList[2]==boardList[3]) or #check horizontal
        (boardList[4]==boardList[5]==boardList[6]) or
@@ -44,14 +47,22 @@ def playerChoice():
     else:
         return ["O","X"]
 print("------------ Tic Tac Toe ------------")
-playerLetter,computerLetter=playerChoice()
-print(playerLetter)
 while True:
     board=[""]*10
     gameStatus=True
     x=firstMove()
+    gameStatus=True
+    playerLetter,computerLetter=playerChoice()
     if x==1:
         turn="player"
     else:
         turn="computer"
     print("'{}' goes First".format(turn))
+    while gameStatus:
+        if turn=="player":
+            displayBoard(board)
+            
+            
+    
+
+    
