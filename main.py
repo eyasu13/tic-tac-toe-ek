@@ -1,3 +1,4 @@
+import random
 def displayBoard(boardList):
     print("-------------")
     print("| "+boardList[9]+" | "+boardList[8]+" | "+boardList[7]+" |")
@@ -34,15 +35,23 @@ def checkFreeSpace(boardList,move):
     
 #def computerMove(boardList,isFree):
 
+def firstMove():
+    return random.randint(1,2)
+def playerChoice():
+    print("X or O")
+    if input().upper()=="X":
+        return ["X","O"]
+    else:
+        return ["O","X"]
+print("------------ Tic Tac Toe ------------")
+playerLetter,computerLetter=playerChoice()
+print(playerLetter)
 while True:
-    
-
-    
-    
-       
-
-    
-    
-    
-        
-    
+    board=[""]*10
+    gameStatus=True
+    x=firstMove()
+    if x==1:
+        turn="player"
+    else:
+        turn="computer"
+    print("'{}' goes First".format(turn))
