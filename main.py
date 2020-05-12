@@ -34,7 +34,7 @@ def checkFreeSpace(boardList,move):
     return boardList[move]==""
     
 #def computerMove(boardList,isFree):
-
+#ee
 def firstMove():
     return random.randint(1,2)
 def playerChoice():
