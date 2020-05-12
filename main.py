@@ -1,28 +1,28 @@
 import random
 def displayBoard(boardList):
-    print("-------------")
+    print("-----------")
     print("| "+boardList[9]+" | "+boardList[8]+" | "+boardList[7]+" |")
     print("-------------")
     print("| "+boardList[4]+" | "+boardList[5]+" | "+boardList[6]+" |")
     print("-------------")
     print("| "+boardList[1]+" | "+boardList[2]+" | "+boardList[3]+" |")
-    print("-------------")
+    print("-----------")
 
-def playerMove(board,playerInput,playerLetter):
+def playerMove(board,playerLetter):
     while True:
-        x=input("What is your move :")
+        x=int(input("What is your move :"))
         if x in [1,2,3,4,5,6,7,8,9] and board[x]=="":
             board[x]=playerLetter
-            break;
-def checkWinner(boardList):
-    if((boardList[1]==boardList[2]==boardList[3]) or #check horizontal
-       (boardList[4]==boardList[5]==boardList[6]) or
-       (boardList[7]==boardList[8]==boardList[9]) or
-       (boardList[1]==boardList[5]==boardList[9]) or #check diagonal
-       (boardList[3]==boardList[5]==boardList[7]) or
-       (boardList[1]==boardList[4]==boardList[7]) or #check vertical
-       (boardList[2]==boardList[5]==boardList[8]) or
-       (boardList[3]==boardList[6]==boardList[9])):
+            break
+def checkWinner(boardList,letter):
+    if((boardList[1]==letter and boardList[2]==letter and boardList[3]==letter) or #check horizontal
+       (boardList[4]==letter and boardList[5]== letter and boardList[6]==letter ) or
+       (boardList[7]==letter and boardList[8]==letter and boardList[9]==letter) or
+       (boardList[1]==letter and boardList[5]==letter and boardList[9]==letter) or #check diagonal
+       (boardList[3]==letter and boardList[5]==letter and boardList[7]==letter) or
+       (boardList[1]==letter and boardList[4]==letter and boardList[7]==letter) or #check vertical
+       (boardList[2]==letter and boardList[5]==letter and boardList[8]==letter) or
+       (boardList[3]==letter and boardList[6]==letter and boardList[9]==letter)):
         return True
     else:
         return False
@@ -61,7 +61,22 @@ while True:
     while gameStatus:
         if turn=="player":
             displayBoard(board)
+            playerMove(board,playerLetter)
+            if checkWinner(board,playerLetter):
+                displayBoard(board)
+                print("You win!!!!")
+                gameStatus=False
+            elif checkdraw(board):
+                displayBoard(board)
+                print("-----Draw-----")
+                gameStatus=False
+            else:
+                turn="computer"
+        else:
+            computerMove()
             
+            
+
             
     
 
