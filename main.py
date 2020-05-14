@@ -63,18 +63,12 @@ while True:
             displayBoard(board)
             playerMove(board,playerLetter)
             if checkWinner(board,playerLetter):
-                displayBoard(board)
                 print("You win!!!!")
-                gameStatus=False
-            elif checkdraw(board):
-                displayBoard(board)
+                break
+            if checkdraw(board):
                 print("-----Draw-----")
-                gameStatus=False
-            else:
-                turn="computer"
         else:
             computerMove()
-            
             
 
             
