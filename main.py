@@ -36,8 +36,22 @@ def checkdraw(boardList):
 def checkFreeSpace(boardList,move):
     return boardList[move]==""
     
-#def computerMove(boardList,isFree):
-#ee
+def computerMove(boardList,cL,pL):
+    for i in range(1,10):
+        copyBoard=boardList
+        if checkFreeSpace(copyBoard,i):
+            copyBoard[i]=cL
+            if checkWinner(copyBoard,cL):
+                return i
+    for i in range(1,10):
+        copyBoard=boardList
+        if checkFreeSpace(copyBoard,i):
+            copyBoard[i]=pL
+            if checkWinner(copyBoard,pL):
+                return i
+    return 8
+
+
 def firstMove():
     return random.randint(1,2)
 def playerChoice():
@@ -59,6 +73,7 @@ while True:
         turn="computer"
     print("'{}' goes First".format(turn))
     while gameStatus:
+        print(board)
         if turn=="player":
             displayBoard(board)
             playerMove(board,playerLetter)
@@ -67,9 +82,12 @@ while True:
                 break
             if checkdraw(board):
                 print("-----Draw-----")
+            turn="computer"
         else:
-            computerMove()
-            
+            x=computerMove(board,computerLetter,playerLetter)
+            board[x]=computerLetter
+            displayBoard(board)
+            turn="player"
 
             
     
