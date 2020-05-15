@@ -29,7 +29,7 @@ def checkWinner(boardList,letter):
 
 def checkdraw(boardList):
     for i in range(1,10):
-        if boardList[i]==" ":
+        if boardList[i]=='':
             return False
     return True
 
@@ -72,21 +72,27 @@ while True:
     else:
         turn="computer"
     print("'{}' goes First".format(turn))
-    while gameStatus:
-        print(board)
+    while gameStatus:        
         if turn=="player":
             displayBoard(board)
             playerMove(board,playerLetter)
             if checkWinner(board,playerLetter):
                 print("You win!!!!")
-                break
-            if checkdraw(board):
+                gameStatus=False
+            if checkdraw(board)==True:
                 print("-----Draw-----")
+                gameStatus=False
             turn="computer"
         else:
             x=computerMove(board,computerLetter,playerLetter)
             board[x]=computerLetter
             displayBoard(board)
+            if checkWinner(board,computerLetter):
+                print("computer win!!!!")
+                gameStatus=False
+            if checkdraw(board):
+                print("-----Draw-----")
+                gameStatus=False
             turn="player"
 
             
