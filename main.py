@@ -8,12 +8,12 @@ def displayBoard(boardList):
     print("| "+boardList[1]+" | "+boardList[2]+" | "+boardList[3]+" |")
     print("-----------")
 
-def playerMove(board,playerLetter):
+def playerMove(board):
     while True:
         x=int(input("What is your move :"))
         if x in [1,2,3,4,5,6,7,8,9] and board[x]=="":
-            board[x]=playerLetter
-            break
+            return x
+            
 def checkWinner(boardList,letter):
     if((boardList[1]==letter and boardList[2]==letter and boardList[3]==letter) or #check horizontal
        (boardList[4]==letter and boardList[5]== letter and boardList[6]==letter ) or
@@ -26,16 +26,15 @@ def checkWinner(boardList,letter):
         return True
     else:
         return False
+def checkFreeSpace(boardList,move):
+    return boardList[move]==""
 
 def checkdraw(boardList):
     for i in range(1,10):
-        if boardList[i]=='':
+        if checkFreeSpace(boardList,i):
             return False
     return True
 
-def checkFreeSpace(boardList,move):
-    return boardList[move]==""
-    
 def computerMove(boardList,cL,pL):
     for i in range(1,10):
         copyBoard=boardList
@@ -75,7 +74,8 @@ while True:
     while gameStatus:        
         if turn=="player":
             displayBoard(board)
-            playerMove(board,playerLetter)
+            y=playerMove(board)
+            board[y]=playerLetter
             if checkWinner(board,playerLetter):
                 print("You win!!!!")
                 gameStatus=False
@@ -90,10 +90,11 @@ while True:
             if checkWinner(board,computerLetter):
                 print("computer win!!!!")
                 gameStatus=False
-            if checkdraw(board):
+            elif checkdraw(board):
                 print("-----Draw-----")
                 gameStatus=False
-            turn="player"
+            else:
+                turn="player"
 
             
     
