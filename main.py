@@ -131,8 +131,8 @@ while True:
     if not gameStatus:
         if input("do you like to play again 'y' or 'n'")=="y":
             continue
-    else:
-        print("computer: "+str(computerS)+" draw: "+str(d)+" you: "+str(youS))
-        break
+        else:
+            print("computer: "+str(computerS)+" draw: "+str(d)+" you: "+str(youS))
+            break
 
     
